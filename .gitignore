@@ -111,3 +111,4 @@ $RECYCLE.BIN/
 lib/
 /node-cert.pem
 /node-ssl.pem
+.env

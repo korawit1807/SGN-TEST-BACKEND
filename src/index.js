@@ -4,9 +4,16 @@ const { getMessage } = require('./socket')
 const server = require('http').createServer(app);
 const io = require('socket.io')
 const { checkDBConnect  } = require('./connect')
+const {
+    covidCaseModel
+} = require('./models')
 server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
-    checkDBConnect()
+    checkDBConnect().then(()=> {
+        // -- init model -- //
+        covidCaseModel
+        // -- End init model -- //
+    })
 });
 const socket = new io.Server(server, {cors: {
     origin: "*", 
@@ -21,11 +28,6 @@ socket.on('connection', (client) => {
     }, 3000)
 });
 
-const getRamdom = (min, max) => {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 module.exports = server
 
 
