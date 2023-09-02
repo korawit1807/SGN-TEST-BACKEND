@@ -3,8 +3,10 @@ const PORT = 4000
 const { getMessage } = require('./socket')
 const server = require('http').createServer(app);
 const io = require('socket.io')
+const { checkDBConnect  } = require('./connect')
 server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
+    checkDBConnect()
 });
 const socket = new io.Server(server, {cors: {
     origin: "*", 
