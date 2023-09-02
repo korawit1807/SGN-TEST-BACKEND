@@ -1,5 +1,5 @@
 const app = require('./app');
-const PORT = 4000
+const PORT = 3000
 const { getMessage } = require('./socket')
 const server = require('http').createServer(app);
 const io = require('socket.io')

@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "SGN-TEST-BACKEND",
   "scripts": {
+    "start": "node src/",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/",
-    "start": "node src/"
+    "dev": "nodemon src/"
+    
   },
   "repository": {
     "type": "git",
