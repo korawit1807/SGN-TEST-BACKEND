@@ -24,7 +24,7 @@ module.exports = class covidGet {
         }
         for(let i = 0; i < data.length; i++ ){
           const createData = {
-            type: data[i]?.country,
+            title: data[i]?.country,
             province: data[i]?.province,
             color: ramdomColor()
           }
@@ -37,7 +37,7 @@ module.exports = class covidGet {
               if(pattern.test(onlyDate)){
                 let newDate = new Date(onlyDate)
                 const test = {
-                  type: createData.type,
+                  title: createData.title,
                   province: createData.province,
                   value: Number(pData[1]),
                   color: createData.color
@@ -49,7 +49,7 @@ module.exports = class covidGet {
             })
           }
           console.log(setNewData)
-          await covidCaseModel.bulkCreate(setNewDate)
+          await covidCaseModel.bulkCreate(setNewData)
         }
 
         return res.json({ data: response?.data })

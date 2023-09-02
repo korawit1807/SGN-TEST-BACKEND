@@ -1,5 +1,7 @@
 const axios = require('axios')
 const {covidCaseModel} = require('../../models')
+const moment = require('moment')
+const { Op } = require('sequelize')
 module.exports = class covidCheck {
     constructor() {
       this.request = axios.create({});
@@ -7,10 +9,24 @@ module.exports = class covidCheck {
     }
     async check(req, res) {
         try {
+            const { date } = req.query 
+            const formatDate = moment(date).format("YYYY-MM-DD")
+            console.log(formatDate)
             const response = await covidCaseModel.findAll({
-                limit: 20
+                where: {
+                    date: {
+                        [Op.and]: {
+                            [Op.gte]: formatDate + ' 00:00:00',
+                            [Op.lte]: formatDate + ' 23:59:59.999999',
+                        }
+                    }
+                },
+                limit: 30,
+                order: [
+                    ['value', 'DESC']
+                ]
             })
-            return response
+            return res.json({ data: response })
 
         } catch (error) {
             console.error('[CHECK] covid error: ', error)
