@@ -1,8 +1,7 @@
 const { Sequelize } = require("sequelize");
-const config = require('./config')
+require('dotenv').config()
 
-console.log(config)
-const sequelize = new Sequelize(config.db_url)
+const sequelize = new Sequelize(process.env.DB)
 
 const checkDBConnect =  async () => {
     try {

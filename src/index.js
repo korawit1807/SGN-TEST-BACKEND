@@ -12,7 +12,7 @@ server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
     checkDBConnect().then(()=> {
         // -- init model -- //
-        covidCaseModel
+        //covidCaseModel
         // -- End init model -- //
     })
 });
@@ -23,16 +23,13 @@ let count = 0
 socket.on('connection', (client) => {
     count++
     console.log('user connect', count)
-    if(count === 4) count = 0
-    
-    setInterval(()=>{
-        let date = new Date("2022-06-30")
-    //console.log(date)
-        let new_date = moment(date).add(1, 'days').format("YYYY-MM-DD");
-        //console.log(new_date)
-        getMessage(client, new_date,count)
-    }, 3000)
+    client.on("getDate", (date)=>{
+        console.log(date)
+        getMessage(client, date,count)
+    })
 });
+
+
 
 module.exports = server
 

@@ -39,7 +39,7 @@ const covidCase = sequelize.define('covid_case', {
 }, {
     indexes: [
         {
-            unique: false,
+            unique: true,
             fields: ['title','province', 'date']
         }
     ]

@@ -11,7 +11,6 @@ module.exports = class covidCheck {
         try {
             const { date } = req.query 
             const formatDate = moment(date).format("YYYY-MM-DD")
-            console.log(formatDate)
             const response = await covidCaseModel.findAll({
                 where: {
                     date: {
