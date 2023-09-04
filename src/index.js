@@ -1,6 +1,6 @@
 const app = require('./app');
 const PORT = 3000
-const { getMessage } = require('./socket')
+const { getMessage, getMessageTEST } = require('./socket')
 const server = require('http').createServer(app);
 const io = require('socket.io')
 const { checkDBConnect  } = require('./connect')
@@ -22,10 +22,11 @@ const socket = new io.Server(server, {cors: {
 let count = 0
 socket.on('connection', (client) => {
     count++
-    console.log('user connect', count)
+    //console.log('user connect', count)
     client.on("getDate", (date)=>{
         console.log(date)
-        getMessage(client, date,count)
+        getMessage(client, date)
+        //getMessageTEST(client, count)
     })
 });
 

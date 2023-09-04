@@ -33,7 +33,7 @@ module.exports = class covidGet {
           if(listOfkey){
             listOfkey.map((pData) => {
               let onlyDate = pData[0].toString()
-              const pattern = /^7\/[0-9]{1,2}\/22$/gim
+              const pattern = /^4\/[0-9]{1,2}\/20$/gim
               if(pattern.test(onlyDate)){
                 let newDate = new Date(onlyDate)
                 const test = {
